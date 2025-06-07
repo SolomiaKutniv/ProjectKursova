@@ -49,21 +49,34 @@ Driver& Driver::operator=(Driver&& other) noexcept {
 
 //Потоковий оператор виведення
 ostream& operator<<(ostream& os, const Driver& driver) {
-	os << driver.surname << "\n"
-		<< driver.initials << "\n"
-		<< driver.persnum << "\n"
-		<< driver.salary;
+	os << driver.surname << "\n";
+	os << driver.initials << "\n";
+	os << driver.persnum << "\n";
+	os << driver.salary;
 	return os;
 }
 
 
 //Потоковий оператор введення
 istream& operator>>(istream& is, Driver& driver) {
-	is >> driver.surname;
-	is >> driver.initials;
-	is >> driver.persnum;
-	is >> driver.salary;
-	return is;
+	if (&is == &cin) {
+		cout << "Прiзвище: ";
+		is >> driver.surname;
+		cout << "Iнiцiали: ";
+		is >> driver.initials;
+		cout << "Персональний номер: ";
+		is >> driver.persnum;
+		cout << "Оклад: ";
+		is >> driver.salary;
+		return is;
+	}
+	else {
+		is >> driver.surname;
+		is >> driver.initials;
+		is >> driver.persnum;
+		is >> driver.salary;
+		return is;
+	}
 }
 
 //Встановлення
@@ -79,5 +92,26 @@ int Driver::getSalary() const { return salary; }
 
 //Виведення
 void Driver::info() {
-	cout << "Прізвище: " << getSurname() << "\nІніціали: " << getInitials() << "\nПерсональний номер: " << getPersnum() << "\nОклад: " << getSalary() << endl;
+	cout << "Прiзвище: " << getSurname() << "\nIнiцiали: " << getInitials() << "\nПерсональний номер: " << getPersnum() << "\nОклад: " << getSalary() << endl;
 }
+
+/*istream& operator>>(istream& is, Driver& driver) {
+	if (&is == &cin) {
+		cout << "Прiзвище: ";
+		is >> driver.surname;
+		cout << "Iнiцiали: ";
+		is >> driver.initials;
+		cout << "Персональний номер: ";
+		is >> driver.persnum;
+		cout << "Оклад: ";
+		is >> driver.salary;
+		return is;
+	}
+	else {
+		is >> driver.surname;
+		is >> driver.initials;
+		is >> driver.persnum;
+		is >> driver.salary;
+		return is;
+	}
+}*/

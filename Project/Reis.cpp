@@ -57,7 +57,7 @@ void Reis::setDate(const string& date) { this->date=date; }
 void Reis::setItem(const string& item) { this->item = item; }
 void Reis::setMileage(double mileage) { this->mileage = mileage; }
 void Reis::setTransported(double transported) { this->transported = transported; }
-void Reis::setConsumption(double consumption) { this->consumption; }
+void Reis::setConsumption(double consumption) { this->consumption = consumption; }
 
 const Car& Reis::getCarObj() const { return car; }
 const Driver& Reis::getDriverObj() const { return driver; }
@@ -71,38 +71,87 @@ void Reis::driverInfo() {
 	driver.info();
 }
 
-void::Reis::carInfo() {
+void Reis::carInfo() {
 	car.info();
 }
 void Reis::info() {
-	cout << "Інформація про автомобіль:" << endl;
+	cout << "Iнформацiя про автомобiль:" << endl;
 	car.info();
-	cout << "Інформація про водія: " << endl;
+	cout << "Iнформацiя про водiя: " << endl;
 	driver.info();
-	cout << "Інформація про рейс: " << endl;
-	cout << "Дата рейсу: " << getDate() << "\nКінцевий пункт призначення: " << getItem() << "\nКілометраж: " << getMileage() << "км \nПеревезено: " << getTransported() << "тонн \nРозхід пального: " << getConsumption() << "л" << endl;
-};
+	cout << "Iнформацiя про рейс: " << endl;
+	cout << "Дата рейсу: " << getDate() << "\nКiнцевий пункт призначення: " << getItem() << "\nКiлометраж: " << getMileage() << "км \nПеревезено: " << getTransported() << "тонн \nРозхiд пального: " << getConsumption() << " л" << endl;
+}
 
 istream& operator>>(istream& is, Reis& reis) {
-	is >> reis.car;
-	is >> reis.driver;
-	is >> reis.date;
-	is.ignore();
-	is >> reis.item;
-	is >> reis.mileage;
-	is >> reis.transported;
-	is >> reis.consumption;
-	is.ignore();
-	return is;
+	if (&is == &cin) {
+		is >> reis.car;
+		is >> reis.driver;
+		cout << "Дата рейсу: ";
+		is >> reis.date;
+		is.ignore();
+		cout << "Кiнцевий пункт призначення: ";
+		is >> reis.item;
+		cout << "Кiлометраж: ";
+		is >> reis.mileage;
+		cout << "Перевезено: ";
+		is >> reis.transported;
+		cout << "Розхiд пального: ";
+		is >> reis.consumption;
+		return is;
+	}
+	else {
+		is >> reis.car;
+		is >> reis.driver;
+		is >> reis.date;
+		is.ignore();
+		is >> reis.item;
+		is >> reis.mileage;
+		is >> reis.transported;
+		is >> reis.consumption;
+		return is;
+	}
 }
 
 ostream& operator<<(ostream& os, const Reis& reis) {
-	os << reis.car << "\n"
-		<< reis.driver << "\n"
-		<< reis.date << "\n"
-		<< reis.item << "\n"
-		<< reis.mileage << "\n"
-		<< reis.transported << "\n"
-		<< reis.consumption;
+	os << reis.car << "\n";
+	os << reis.driver << "\n";
+	os << reis.date << "\n";
+	os << reis.item << "\n";
+	os << reis.mileage << "\n";
+	os << reis.transported << "\n";
+	os	<< reis.consumption;
 	return os;
 }
+
+/*istream& operator>>(istream& is, Reis& reis) {
+	if (&is == &cin) {
+		is >> reis.car;
+		is >> reis.driver;
+		cout << "Дата рейсу: ";
+		is >> reis.date;
+		is.ignore();
+		cout << "Кiнцевий пункт призначення: ";
+		is >> reis.item;
+		cout << "Кiлометраж: ";
+		is >> reis.mileage;
+		cout << "Перевезено: ";
+		is >> reis.transported;
+		cout << "Розхiд пального: ";
+		is >> reis.consumption;
+		is.ignore();
+		return is;
+	}
+	else {
+		is >> reis.car;
+		is >> reis.driver;
+		is >> reis.date;
+		is.ignore();
+		is >> reis.item;
+		is >> reis.mileage;
+		is >> reis.transported;
+		is >> reis.consumption;
+		is.ignore();
+		return is;
+	}
+}*/

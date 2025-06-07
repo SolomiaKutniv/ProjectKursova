@@ -52,27 +52,45 @@ Car& Car::operator=(Car&& other) noexcept {
 
 //Потоковий оператор виведення
 ostream& operator<<(ostream& os, const Car& car) {
-	os << car.number<< "\n"
-		<< car.brand << "\n"
-		<< car.payload << "\n"
-		<< car.fuel<< "\n"
-		<< car.registration << "\n";
+	os << car.number << "\n";
+	os << car.brand << "\n";
+	os << car.payload << "\n";
+	os << car.fuel << "\n";
+	os	<< car.registration;
 	return os;
 }
 
 
 
 //Потоковий оператор введення
-istream& operator>>(istream& is, Car& bus) {
-	is >> bus.number;
-	is >> bus.brand;
-	is >> bus.payload;
-	is >> bus.fuel;
-	is.ignore();
-	is >> bus.registration;
-	return is;
-}
+istream& operator>>(istream& is, Car& car) {
+	if (&is == &cin) {
+		cout << "Номер: ";
+		is >> car.number;
+		cout << "Марка: ";
+		is >> car.brand;
+		cout << "Вантажопiдйомнiсть: ";
+		is >> car.payload;
+		cout << "Норма витрат пального: ";
+		is >> car.fuel;
+		is.ignore();
+		cout << "Мiсце прописки: ";
+		is >> car.registration;
+		is.ignore();
+		return is;
+	}
+	else {
+		is >> car.number;
+		is >> car.brand;
+		is >> car.payload;
+		is >> car.fuel;
+		is.ignore();
+		is >> car.registration;
+		is.ignore();
+		return is;
+	}
 
+}
 string Car::getNumber() const { return number; }
 string Car::getBrand() const { return brand; }
 int Car::getPayload() const { return payload; }
@@ -89,5 +107,32 @@ void Car::setRegistration(const string& registration) { this->registration = reg
 
 //Виведення
 void Car::info() {
-	cout << "Номер: " << getNumber() << "\nМарка: " << getBrand() << "\nВантажопідйомність: " << getPayload() << "\nНорма витрат пального: " << getFuel() << "л \nМісце прописки: " << getRegistration() << endl;
-};
+	cout << "Номер: " << getNumber() << "\nМарка: " << getBrand() << "\nВантажопiдйомнiсть: " << getPayload() << "\nНорма витрат пального: " << getFuel() << " л \nМiсце прописки: " << getRegistration() << endl;
+}
+
+/*istream& operator>>(istream& is, Car& bus) {
+	if (&is == &cin) {
+		cout << "Номер: "; 
+		is >> bus.number;
+		cout << "Марка: ";
+		is >> bus.brand;
+		cout << "Вантажопiдйомнiсть: ";
+		is >> bus.payload;
+		cout << "Норма витрат пального: ";
+		is >> bus.fuel;
+		is.ignore();
+		cout << "Мiсце прописки: ";
+		is >> bus.registration;
+		return is;
+	}
+	else {
+		is >> bus.number;
+		is >> bus.brand;
+		is >> bus.payload;
+		is >> bus.fuel;
+		is.ignore();
+		is >> bus.registration;
+		return is;
+	}
+	
+}*/

@@ -15,7 +15,7 @@ private:
 	double transported; //перевезено(тонн)
 	double consumption; //розхід пального
 	
-public:
+public: 
 
 	Reis();
 	

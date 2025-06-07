@@ -33,7 +33,7 @@
     <ClCompile Include="Timetable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Iterator.cpp">
+    <ClCompile Include="ReisIterator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,7 +53,7 @@
     <ClInclude Include="Timetable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Iterator.h">
+    <ClInclude Include="ReisIterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
